@@ -54,7 +54,7 @@ int main() {
         nbytes = read(fid, &event, sizeof(event));
         if (nbytes == sizeof(event)) {
             handle_event(event);
-        } else if(nbytes > 0) {
+        } else if (nbytes > 0) {
             printf("received fragment of length %ld", nbytes);
         }
 
@@ -138,8 +138,9 @@ void handle_event(struct input_event event) {
             sprintf(event_code, "%d", event.code);
     }
 
-    fprintf(stdout, "[%d] sec: %-10ld  | us: %-10ld  |  type: %-10s  |  "
-                    "code: %-10s  |  value: %-10d\n",
+    fprintf(stdout,
+            "[%d] sec: %-10ld  | us: %-10ld  |  "
+                    "type: %-10s  |  code: %-10s  |  value: %-10d\n",
             counter++, event.time.tv_sec, event.time.tv_usec,
             event_type, event_code, event.value);
 
