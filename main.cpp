@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-// SUPER IMPORTANT - go through this header file for input event handling details
 #include <linux/input.h>
 
 #include <string.h>
@@ -139,7 +138,9 @@ void handle_event(struct input_event event) {
             sprintf(event_code, "%d", event.code);
     }
 
-    fprintf(stdout, "[%d] type: %-10s  |  code: %-10s  |  value: %-10d\n",
-            counter++, event_type, event_code, event.value);
+    fprintf(stdout, "[%d] sec: %-10ld  | us: %-10ld  |  type: %-10s  |  "
+                    "code: %-10s  |  value: %-10d\n",
+            counter++, event.time.tv_sec, event.time.tv_usec,
+            event_type, event_code, event.value);
 
 }
